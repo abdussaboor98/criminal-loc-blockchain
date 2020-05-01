@@ -1,0 +1,230 @@
+[
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "getPassportNo",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			},
+			{
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getLocation",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_ppNo",
+				"type": "string"
+			}
+		],
+		"name": "getAadharNo",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "getName",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "getFaceCode",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			},
+			{
+				"name": "_location",
+				"type": "string"
+			}
+		],
+		"name": "addLocation",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "getLocCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "aadharExists",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_ppNo",
+				"type": "string"
+			},
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			},
+			{
+				"name": "_facecode",
+				"type": "bytes"
+			}
+		],
+		"name": "addPerson",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_ppNo",
+				"type": "string"
+			}
+		],
+		"name": "passportExists",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "passportNo",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "personAdded",
+		"type": "event"
+	}
+]
