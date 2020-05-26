@@ -1,0 +1,61 @@
+.idbtn{
+    border-radius: 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 15px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.idbtn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.idbtn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.idbtn:hover span {
+    padding-right: 25px;
+}
+  
+.idbtn:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+#compId{
+    display:inline;
+}
+#check-button:hover{
+    background-color: rgb(38, 122, 41);
+}
+#box{
+    width:70%;
+    margin-left: 230px;
+}
+#output-box{
+    border-style: none;
+    border-radius: 20px;
+    background-color: rgba(128, 128, 128, 0.281);
+    width:50%;
+    display:block;
+    margin:10px auto 10px auto;
+    text-align: justify;
+    padding-top: 5px;
+    padding-left:20px;
+    padding-bottom: 10px;
+}

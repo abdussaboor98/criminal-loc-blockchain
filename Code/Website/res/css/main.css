@@ -1,0 +1,362 @@
+/* ALL THE RCURRING STYLE PROPERTIES IN THIS FILE */
+/****Fonts*****/
+@font-face {
+    font-family: 'roboto_slabregular','Audrey';
+        
+    src: url('./font/robotoslab-regular-webfont.woff2') format('woff2'),
+         url('./font/robotoslab-regular-webfont.woff') format('woff'),
+         url('./font/RobotoSlab-Regular.ttf')format('ttf')
+         url('./font/Audrey-MediumOblique.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color:rgb(0, 129, 108);
+    padding: 20px;;
+    font-family: 'roboto_slabregular','Verdana','Source Sans Pro', 'Arial';
+   
+}
+
+/**** Main div container ****/
+.container {
+    width:97%;
+    margin: 0 0 0 0;
+    text-align: center;
+    background-color:#ffffff;
+    overflow: hidden;
+    padding: 25px 0 10px 0;
+    border-radius: 25px;
+    box-shadow: 10px 10px 30px rgb(33, 73, 33, 0.425);
+    border-bottom: 0.7em solid rgba(255, 95, 3, 0.596);
+}
+
+/**** Title highlight ****/
+
+h4{
+    display: inline;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: oblique;
+    font-weight:bold;
+
+}
+
+#head{
+    font-family: 'Courier New', Courier, monospace;
+    text-align: inline;
+}
+
+.highlight{
+    color:#e8491d;
+    font-weight: bold;
+}
+
+/**** Showcase aka Greeting Message ****/
+#showcase{
+    width:50%;
+    margin: 0 auto;
+    font-weight: lighter;
+    font-size: 19px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    background-color:rgba(55, 197, 204, 0.692);
+    overflow: hidden;
+    padding: 10px 0 0 0;
+    border-radius: 100px;
+    box-shadow: 5px 5px 10px rgb(33, 73, 33, 0.425);
+}
+
+/****ALL Navigation bar aka Navbar properties ****/
+
+.navbar{
+    margin:0;
+    float: right;
+    padding:2em;
+    border-radius: 20px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    list-style-type: none;
+    margin-bottom: 20px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #333;
+}
+.navbar-list{
+    display: inline;
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #333;
+    position: sticky;
+}
+
+.navbar-list-element-r{
+   
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar-list-element{
+    float: left;
+    position:sticky;
+
+}
+
+.navbar-list-element a{
+    display: block;
+    transition: all 0.5s;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar-list-element:hover{
+    background-color: #111;
+    border-radius: 20px; 
+    transition: all 0.5s;
+}
+
+.active {
+    background-color: #4CAF50;
+  }
+
+@media screen and (max-width: 600px) {
+    .navbar-list, 
+    .navbar-list-element {float: none;}
+
+    .button{font-size: small;height:100px;}
+}
+
+/**** Boxes ****/
+#boxes{
+    margin-top:20px;
+    
+  }
+  
+#boxes .box{
+    float:left;
+    text-align: center;
+    width:30%;
+    margin: 10px 0 0 auto;
+    text-align: center;
+    margin: 20px;
+    background-color:#0b5baad5;
+    overflow: hidden;
+    padding: 10px 0 30px 0;
+    border-radius: 40px;
+    box-shadow: 20px 20px 30px rgb(33, 73, 33, 0.425);
+}
+
+/* Boxes container */
+/*.container2{
+    width: 90%;
+    margin: 10px auto;
+    text-align: center;
+    background-color:#0b5baad5;
+    overflow: hidden;
+    padding: 10px 0 30px 0;
+    border-radius: 25px;
+    box-shadow: 20px 20px 30px rgb(33, 73, 33, 0.425);
+}*/
+
+/**** Hover buttons for bottom navigation boxes ****/
+
+.btn{
+    border-radius: 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    word-wrap: unset;
+}
+
+.btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    word-wrap: none;
+}
+  
+.btn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.btn:hover span {
+    padding-right: 25px;
+}
+  
+.btn:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/**** Form Labels and Buttons ****/
+
+/*Submit buttons */
+.submitbtn{
+    padding: 15px 25px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px #999;
+  }
+  
+.submitbtn:hover {
+    background-color: #3e8e41
+}
+  
+.submitbtn:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+/*Form labels*/
+
+label {
+    display:block;
+    margin-bottom:10px;
+}
+label {
+    display:block;
+    margin-bottom:10px;
+    text-align: left;
+    margin-left: 25%;
+}
+button {
+    margin: 30px auto 0 auto;
+    font-size: medium;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    font-family: 'roboto_slabregular','Verdana','Source Sans Pro', 'Arial';
+    z-index: 20;
+}
+.button{
+    width:50%;
+    display:block;
+    font-family: 'roboto_slabregular','Verdana','Source Sans Pro', 'Arial';
+}
+button:hover{
+    background-color: rgb(38, 122, 41);
+}
+input{
+    padding:10px;
+    width: 50%;
+    margin-bottom: 1em;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    font-family: 'roboto_slabregular','Verdana','Source Sans Pro', 'Arial';
+}
+select{
+    padding:10px;
+    width: 50%;
+    margin-bottom: 1em;
+    font-size: medium;
+    text-align: center;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    font-family: 'roboto_slabregular','Verdana','Source Sans Pro', 'Arial';
+}
+.errmsg{
+    color: red;
+    text-align: right;
+    margin-right:25%;
+}
+.formblock{
+    width:50%;
+}
+
+
+
+/**** About US ****/
+
+/*Title*/
+
+#about{
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:#006636ea;
+    font-size: 1em;
+}
+
+/*About Us images*/
+
+#imgboxes{
+    margin-top:20px;
+    
+}
+  
+#imgboxes .box{
+    float:left;
+    text-align: center;
+    width:30%;
+    padding:7px;
+    border-radius: 50%;
+    font-style: italic;
+    font-weight: bolder;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#imgboxes #saboor{
+    border-radius: 50%;
+}
+
+.imgcontainer2{
+    width: 75%;
+    margin: 10px auto;
+    text-align: center;
+    overflow: hidden;
+    background-color: rgba(240, 241, 178, 0.89);
+    padding: 10px 0 30px 0;
+    border-radius: 25px;
+    box-shadow: 20px 20px 30px rgb(33, 73, 33, 0.425);
+}
+
+/*Media queries*/
+
+@media(max-width: 768px){
+    h4,
+    .navbar,
+    .navbar-list-element,
+    #boxes, 
+    .box {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="head animated fadeIn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>LOC Directory</title>
+        <link rel="shortcut icon" type="image/x-icon" href="./res/final_icon.png"/>
+
+        <script src="./node_modules/web3/dist/web3.min.js"></script>
+        <script src="./res/js/jquery.js"></script>
+        <script src="./res/js/validations.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="./res/css/main.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/index.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/outputbox.css">
+    </head>
+<body>
+    <div class="container">
+        <h1 id="main"><span class="highlight"><i>CRIMINAL</span> IDENTIFICATION</i><h4>Powered by Blockchain</p></h4>
+        
+        <div class="navbar">
+                <ul class="navbar-list">
+                    <li class="navbar-list-element"><a href="./index.html">Home</a></li>
+                    <li class="navbar-list-element"><a href="./newLOC.html">New LOC</a></li>
+                    <li class="navbar-list-element"><a href="./checkstatus.html">Check Status</a></li>
+                    <li class="navbar-list-element"><a href="./updateLOC.html">Update LOC</a></li>
+                    <li class="navbar-list-element"><a href="./locdirectory.html" class="active">LOC Directory</a></li>              
+                    <li class="navbar-list-element"><a href="./livealert.html">Live Alerts</a></li>
+                    <li class="navbar-list-element"style="float:right;"><a href="./about.html">About Us</a></li>
+                </ul>
+            </div>
+            <h2 id="head">Directory for all submitted LOCs</h2>
+            
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px;">Access all the existing submitted LOCs.</p>
+
+            <button class="btn" id="getLOCs"><span>Get my submitted LOCs</span></button>
+            <div id="output-area">
+                
+            </div>
+        </div>
+
+        <script language="javascript">
+            if(typeof web3 !== 'undefined'){
+                web3 = new Web3(web3.currentProvider);
+            }
+            else{
+                alert("No ethereum wallet detected. Please install an ethereum wallet extension (e.g. Metamask).");
+                document.location.href= "./index.html";
+            }
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+            function readJSON(file) {
+                var request = new XMLHttpRequest();
+                request.open('GET', file, false);
+                request.send(null);
+                if (request.status == 200)
+                    return request.responseText;
+            };
+            var abi = readJSON('./abi.json');
+            var LOCContract = web3.eth.contract(JSON.parse(abi));
+            var LOC = LOCContract.at('0x960e552ba5dcccd56ae18c616b17ea4441bc67e5');
+            var compCount;
+            var i;
+
+            window.onload = function() {
+                LOC.getCompCount((err,res) =>{
+                    if(!err){
+                        //console.log(res.valueOf());
+                        compCount = res;
+                    }
+                });
+                
+            }
+
+            $("#getLOCs").click(() => {
+                $("#getLOCs").hide();
+                console.log(compCount);
+                for(i=1;i<compCount;i++){
+                    console.log("Current id:"+i);
+                    getAcc(i);
+                }
+            });
+
+            async function getAcc(i){
+                await LOC.getAccount(i,(err,res) =>{
+                    console.log(res);
+                    if(res == web3.eth.defaultAccount){
+                        getLOC(i);   
+                    }
+                });
+            }
+
+            async function getLOC(i){
+                await LOC.statusById(i,(err,res) =>{
+                    if(!err){
+                        console.log(res); 
+                        $("#output-area").append("<div id='output-box'>Complaint ID: "+res[0]+"<br/>Name: "+res[1]+"<br/>Aadhar No: "+res[2]+"<br/>Passport No: "+res[3]+"<br/>Status: "+res[5]+"<br/></div>");
+                    }
+                });
+            }
+        </script>
+    </body> 
+</html>

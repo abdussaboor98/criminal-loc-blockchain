@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="head animated fadeIn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>New LOC</title>
+        <link rel="shortcut icon" type="image/x-icon" href="./res/final_icon.png"/>
+        <link rel="stylesheet" type="text/css" href="./res/css/main.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/animate.css">
+
+        <script src="./node_modules/web3/dist/web3.min.js"></script>
+    </head>                                                
+    <body>
+        <div class="container">
+            <h1 id="main"><span class="highlight"><i>CRIMINAL</span> IDENTIFICATION</i><h4>Powered by Blockchain</p></h4>
+           
+            <div class="navbar">
+                <ul class="navbar-list">
+                    <li class="navbar-list-element"><a href="./index.html">Home</a></li>
+                    <li class="navbar-list-element"><a href="./newLOC.html" class="active">New LOC</a></li>
+                    <li class="navbar-list-element"><a href="./checkstatus.html">Check Status</a></li>
+                    <li class="navbar-list-element"><a href="./updateLOC.html">Update LOC</a></li>
+                    <li class="navbar-list-element"><a href="./locdirectory.html">LOC Directory</a></li> 
+                    <li class="navbar-list-element"><a href="./livealert.html">Live Alerts</a></li>
+                    <li class="navbar-list-element"style="float:right;"><a href="./about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <h2 style="font-family: 'Courier New', Courier, monospace;text-align: inline;font-weight: bold; font-size: 25px;">Add a new Look Out Circular(LOC)</h2>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 22px;">Add a new complaint by <b>Aadhar number</b> or <b>Passport number</b></p>
+            <form action="./byAadhar.html">
+                <button class="btn" onClick="toByAadhar()"><span>Add by Aadhar Number </span></button>
+            </form>
+            
+            <form action="./byPassport.html">
+                <button class="btn" onClick="toByPassport()"><span>Add by Passport Number</span></button>
+            </form>
+            
+        </div>
+
+        <script>
+            function toByAadhar() {
+                document.location.href= "./byAadhar.html";
+            }
+            function toByPassport() {
+                document.location.href= "./byPassport.html";
+            }
+
+            if(typeof web3 !== 'undefined'){
+                web3 = new Web3(web3.currentProvider);
+            }
+            else{
+                alert("No ethereum wallet detected. Please install an ethereum wallet extension (e.g. Metamask).");
+                document.location.href= "./index.html";
+            }
+        </script>
+    </body> 
+</html>

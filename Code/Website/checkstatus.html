@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="head animated fadeIn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Check Status</title>
+        <link rel="shortcut icon" type="image/x-icon" href="./res/final_icon.png"/>
+
+        <script src="./node_modules/web3/dist/web3.min.js"></script>
+        <script src="./res/js/jquery.js"></script>
+        <script src="./res/js/validations.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="./res/css/main.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/index.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/animate.css">
+    </head>
+<body>
+    <div class="container">
+        <h1 id="main"><span class="highlight"><i>CRIMINAL</span> IDENTIFICATION</i><h4>Powered by Blockchain</p></h4>
+        
+        <div class="navbar">
+                <ul class="navbar-list">
+                    <li class="navbar-list-element"><a href="./index.html">Home</a></li>
+                    <li class="navbar-list-element"><a href="./newLOC.html">New LOC</a></li>
+                    <li class="navbar-list-element"><a href="./checkstatus.html" class="active">Check Status</a></li>
+                    <li class="navbar-list-element"><a href="./updateLOC.html">Update LOC</a></li>
+                    <li class="navbar-list-element"><a href="./locdirectory.html">LOC Directory</a></li> 
+                    <li class="navbar-list-element"><a href="./livealert.html">Live Alerts</a></li>
+                    <li class="navbar-list-element"style="float:right;"><a href="./about.html">About Us</a></li>
+                </ul>
+            </div>
+            <h2 id="head">Check LOC Status</h2>
+            
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px;">Select the desired option to check the status of an existing LOC.</p>
+
+            <button class="btn" value="" onClick="checkById()"><span>Check by Complaint ID</span></button>
+            <button class="btn" onClick="checkByAadhar()"><span>Check by Aadhar Number</span></button>
+            <button class="btn" value="" onClick="checkByPassport()"><span>Check by Passport Number</span></button>
+        </div>
+
+        <script language="javascript">
+            function checkByAadhar() {
+                document.location.href= "./checkByAadhar.html";
+            }
+            function checkByPassport() {
+                document.location.href= "./checkByPassport.html";
+            }
+            function checkById() {
+                document.location.href= "./checkById.html";
+            }
+
+            if(typeof web3 !== 'undefined'){
+                web3 = new Web3(web3.currentProvider);
+            }
+            else{
+                alert("No ethereum wallet detected. Please install an ethereum wallet extension (e.g. Metamask).");
+                document.location.href= "./index.html";
+            }
+        </script>
+    </body> 
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="head animated fadeIn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Live Alerts</title>
+        <link rel="shortcut icon" type="image/x-icon" href="./res/final_icon.png"/>
+
+        <script src="./node_modules/web3/dist/web3.min.js"></script>
+        <script src="./res/js/jquery.js"></script>
+        <script src="./res/js/validations.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="./res/css/main.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/index.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/outputbox.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/animate.css">
+    </head>
+<body>
+    <div class="container">
+        <h1 id="main"><span class="highlight"><i>CRIMINAL</span> IDENTIFICATION</i><h4>Powered by Blockchain</p></h4>
+        
+        <div class="navbar">
+                <ul class="navbar-list">
+                    <li class="navbar-list-element"><a href="./index.html">Home</a></li>
+                    <li class="navbar-list-element"><a href="./newLOC.html">New LOC</a></li>
+                    <li class="navbar-list-element"><a href="./checkstatus.html">Check Status</a></li>
+                    <li class="navbar-list-element"><a href="./updateLOC.html">Update LOC</a></li>
+                    <li class="navbar-list-element"><a href="./locdirectory.html">LOC Directory</a></li> 
+                    <li class="navbar-list-element"><a href="./livealert.html" class="active">Live Alerts</a></li>
+                    <li class="navbar-list-element"style="float:right;"><a href="./about.html">About Us</a></li>
+                </ul>
+            </div>
+            <h2 id="head">Scan Alerts</h2>
+            
+            <div id="alerts">
+
+            </div>
+            <p id="grey-blockhash" hidden></p>
+            <p id="black-blockhash" hidden></p>
+        </div>
+
+        <script language="javascript">
+            if(typeof web3 !== 'undefined'){
+                web3 = new Web3(web3.currentProvider);
+            }
+            else{
+                alert("No ethereum wallet detected. Please install an ethereum wallet extension (e.g. Metamask).");
+                document.location.href= "./index.html";
+            }
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+            function readJSON(file) {
+                var request = new XMLHttpRequest();
+                request.open('GET', file, false);
+                request.send(null);
+                if (request.status == 200)
+                    return request.responseText;
+            };
+            var abi = readJSON('./abi.json');
+            var LOCContract = web3.eth.contract(JSON.parse(abi));
+            var LOC = LOCContract.at('0x960e552ba5dcccd56ae18c616b17ea4441bc67e5');
+
+            var passportAlertEvent = LOC.passportAlert({},'latest');
+            var aadharAlertEvent = LOC.aadharAlert({},'latest');
+
+            $("#alerts").hide();
+
+            aadharAlertEvent.watch((err,res) =>{
+                console.log("watching event..."+res+err);
+                if(!err){
+                    console.log(res.args.retAddr);
+                    if(res.args.status == 'Greylist'){
+                        if (res.blockHash != $("#grey-blockhash").html())
+                            if(web3.eth.defaultAccount == res.args.retAddr){
+                                $("#grey-blockhash").html(res.blockHash);
+                                $("#alerts").append("<div id='output-box'><p id='out-line1'>Aadhar No:"+res.args.aadharNo+"</p><p id='out-line2'>Passport No: "+res.args.passportNo+" </p><p id='out-line3'>Scanned At: "+res.args.location+" </p><p id='out-line4'>Status: "+res.args.status+" </p></div>");
+                                $("#alerts").show();
+                        }
+                    }
+                    if(res.args.status == 'Blacklist'){
+                        if (res.blockHash != $("#black-blockhash").html())
+                            if(web3.eth.defaultAccount == res.args.retAddr){
+                                $("#black-blockhash").html(res.blockHash);
+                                $("#alerts").append("<div id='output-box'><p id='out-line1'>Aadhar No:"+res.args.aadharNo+"</p><p id='out-line2'>Passport No: "+res.args.passportNo+" </p><p id='out-line3'>Scanned At: "+res.args.location+" </p><p id='out-line4'>Status: "+res.args.status+" </p></div>");
+                                $("#alerts").show();
+                        }
+                    }
+                    
+                }
+                else    
+                    console.log(err);
+            });
+        </script>
+    </body> 
+</html>

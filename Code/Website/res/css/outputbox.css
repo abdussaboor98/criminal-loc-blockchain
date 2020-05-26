@@ -1,0 +1,12 @@
+#output-box{
+    border-style: none;
+    border-radius: 20px;
+    background-color: rgba(128, 128, 128, 0.281);
+    width:50%;
+    display:block;
+    margin:10px auto 10px auto;
+    text-align: justify;
+    padding-top: 5px;
+    padding-left:20px;
+    padding-bottom: 10px;
+}

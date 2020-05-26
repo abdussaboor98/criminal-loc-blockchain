@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="head animated fadeIn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Add by Aadhar number</title>
+        <link rel="shortcut icon" type="image/x-icon" href="./res/final_icon.png"/>
+
+        <script src="./node_modules/web3/dist/web3.min.js"></script>
+        <script src="./res/js/jquery.js"></script>
+        <script src="./res/js/validations.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="./res/css/main.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/index.css">
+        <link rel="stylesheet" type="text/css" href="./res/css/animate.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1 id="main"><span class="highlight"><i>CRIMINAL</span> IDENTIFICATION</i><h4>Powered by Blockchain</p></h4>
+        
+            <div class="navbar">
+                <ul class="navbar-list">
+                    <li class="navbar-list-element"><a href="./index.html">Home</a></li>
+                    <li class="navbar-list-element"><a href="./newLOC.html"  class="active">New LOC</a></li>
+                    <li class="navbar-list-element"><a href="./checkstatus.html">Check Status</a></li>
+                    <li class="navbar-list-element"><a href="./updateLOC.html">Update LOC</a></li>
+                    <li class="navbar-list-element"><a href="./locdirectory.html">LOC Directory</a></li> 
+                    <li class="navbar-list-element"><a href="./livealert.html">Live Alerts</a></li>
+                    <li class="navbar-list-element"style="float:right;"><a href="./about.html">About Us</a></li>
+                </ul>
+            </div><br/>
+        
+            <h2 style="font-family: 'Courier New', Courier, monospace; text-align: center;">Add by Aadhar Number</h2>
+        
+            <div id="inputform"  class="form-block" action="" method="" autocomplete="off">
+                <p style="font-family:'Times New Roman', Times, serif; font-size: 20px;">Provide the details to log a complaint by Aadhar number.</p>
+                <input autocomplete="false" name="hidden" type="text" style="display:none;">
+                <label style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 18px;"><b>Complaint ID</label>
+                <input id="compId" type="text" disabled/>
+                <label class="errmsg" id="errmsg1">ID already exists</label>
+                <label style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 18px;">Aadhar Number</label>
+                <input id="aadharNo" placeholder="Enter the Aadhar number (12 digits)" type="text" maxlength=12 onkeypress="return onlyNum(event);" onblur="minSizeA(event);" onfocus="$('.errmsg').hide();" autocomplete="off"/>
+                <label class="errmsg" id="errmsg2">No such Aadhar number exists in DB</label>
+                <label class="errmsg" id="a_n_required" for="aadharNo">Enter a 12 digit Aadhar number</label>
+                <label style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 18px;">Duration</label>
+                <input id="duration" type="text" placeholder="Enter the duration of LOC (in days)" onkeypress="return onlyNum(event);" onfocus="$('.errmsg').hide();" autocomplete="off" onblur="isRequired(event);"/>
+                <label class="errmsg" id="dur_required" for="duration">Enter the duration</label>
+                <label style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 18px;" for="Status" class="col-lg-2 control-label">Status</b></label>
+                <select id="status">
+                    <option>--select--</option>
+                    <option value='0'>Whitelist</option>
+                    <option value='1'>Greylist</option>
+                    <option value='2'>Blacklist</option>
+                </select>
+                <input type="submit" id="submit" class="submitbtn" value="Submit Complaint"/>
+            </div>
+            <div id="loader">
+                <img src="./res/loading.gif" alt="Contacting Blockchain...." />
+            </div>
+            <div id="confirm-container">
+                <p id="confirm-msg"></p>
+            </div>
+            <p id="blockhash" hidden></p>
+        </div>
+
+        <script>
+            if(typeof web3 !== 'undefined'){
+                web3 = new Web3(web3.currentProvider);
+            }
+            else{
+                alert("No ethereum wallet detected. Please install an ethereum wallet extension (e.g. Metamask).");
+                document.location.href= "./index.html";
+            }
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+        
+            function readJSON(file) {
+                var request = new XMLHttpRequest();
+                request.open('GET', file, false);
+                request.send(null);
+                if (request.status == 200)
+                    return request.responseText;
+            };
+            var abi = readJSON('./abi.json');
+            var LOCContract = web3.eth.contract(JSON.parse(abi));
+            var LOC = LOCContract.at('0x960e552ba5dcccd56ae18c616b17ea4441bc67e5');
+            var compId;
+            var createdAlertEvent = LOC.createdAlert({},'latest');
+            var notAllowedEvent = LOC.notAllowed({},'latest');
+            var compNo;
+    
+        $("#loader").hide();
+        $("#confirm-container").hide();
+        $(".errmsg").hide();
+
+        createdAlertEvent.watch((err,res) => {
+            if(!err && res.args.compId == compId){
+                $("#loader").hide();
+                $("#confirm-msg").html('Complaint LOC created by ID: '+res.args.compId);
+                $("#confirm-container").show();
+            }
+            else{
+                console.log(err);
+            }
+        });
+
+        notAllowedEvent.watch((err,res) =>{
+            if (res.blockHash != $("#blockhash").html()){
+                console.log("hash mismatch");
+                if(res.args.illegalAccount == web3.eth.defaultAccount){
+                    $("#blockhash").html(res.blockHash);
+                    $("#loader").hide();
+                    $("#confirm-container").hide();
+                    $(".errmsg").hide();
+                    $("#confirm-msg").html('Unauthorized Access');
+                    $("#confirm-container").show();
+                    alert("You are not authorized to do so");
+                }
+            }    
+        });
+
+        window.onload = function() {
+            LOC.getCompCount((err,res) =>{
+                if(!err){
+                    //console.log(res.valueOf());
+                    compNo = res;
+                    $("#compId").val(compNo);
+                }
+            });
+        }
+
+        $("#submit").click(function() {
+            $(".errmsg").hide();
+            compId = $("#compId").val();
+            LOC.checkId($("#compId").val(),(err,res) => {
+                if(res){
+                    $("#errmsg1").show();
+                }
+                else if(checkRequiredFields2("#aadharNo","#duration")){
+                    LOC.aadharExists($("#aadharNo").val(),(err,res) => {
+                        if(!res){
+                            $("#errmsg2").show();
+                        }
+                        else{
+                            $("#inputform").hide();
+                            $("#loader").show();
+                            LOC.newByAadhar($("#compId").val(),$("#aadharNo").val(),$("#duration").val(),$("#status").val(),(err,res) =>{
+                            //console.log(res.args);
+                            //console.log(err);
+                                if(err)
+                                {
+                                    alert("You are not allowed to create an LOC");
+                                    console.log(err);
+                                    $("#loader").hide();
+                                    $("#inputform").show();
+                                }   
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    </body>
+</html>

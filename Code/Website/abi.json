@@ -1,0 +1,477 @@
+[
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_compid",
+				"type": "uint256"
+			}
+		],
+		"name": "statusById",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_compId",
+				"type": "uint256"
+			},
+			{
+				"name": "_ppNo",
+				"type": "string"
+			},
+			{
+				"name": "_duration",
+				"type": "uint256"
+			},
+			{
+				"name": "_status",
+				"type": "uint8"
+			}
+		],
+		"name": "newByPassport",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_compid",
+				"type": "uint256"
+			}
+		],
+		"name": "checkId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			},
+			{
+				"name": "_location",
+				"type": "string"
+			}
+		],
+		"name": "aadharScan",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			},
+			{
+				"name": "passportNo",
+				"type": "string"
+			},
+			{
+				"name": "_retAddr",
+				"type": "address"
+			},
+			{
+				"name": "_location",
+				"type": "string"
+			},
+			{
+				"name": "_status",
+				"type": "uint8"
+			}
+		],
+		"name": "aadharAlertCall",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCompCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "statusByAadhar",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "updateByDuration",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_compid",
+				"type": "uint256"
+			},
+			{
+				"name": "_status",
+				"type": "uint8"
+			},
+			{
+				"name": "_duration",
+				"type": "uint256"
+			}
+		],
+		"name": "updateById",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_compId",
+				"type": "uint256"
+			}
+		],
+		"name": "getAadharByCompId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "aadharExists",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_compId",
+				"type": "uint256"
+			}
+		],
+		"name": "getAccount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_passportNo",
+				"type": "string"
+			}
+		],
+		"name": "statusByPp",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_compId",
+				"type": "uint256"
+			}
+		],
+		"name": "getPassportByCompId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_compId",
+				"type": "uint256"
+			},
+			{
+				"name": "_aadharNo",
+				"type": "uint256"
+			},
+			{
+				"name": "_duration",
+				"type": "uint256"
+			},
+			{
+				"name": "_status",
+				"type": "uint8"
+			}
+		],
+		"name": "newByAadhar",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_passportNo",
+				"type": "string"
+			}
+		],
+		"name": "passportExists",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "usersAddr",
+				"type": "address"
+			},
+			{
+				"name": "personsAddr",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "compId",
+				"type": "uint256"
+			}
+		],
+		"name": "createdAlert",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "aadharNo",
+				"type": "uint256"
+			}
+		],
+		"name": "noSuchAadhar",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "ppNo",
+				"type": "string"
+			}
+		],
+		"name": "noSuchPassport",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "aadharNo",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "passportNo",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "retAddr",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "location",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "passportAlert",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "aadharNo",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "passportNo",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "retAddr",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "location",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "aadharAlert",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "illegalAccount",
+				"type": "address"
+			}
+		],
+		"name": "notAllowed",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "compId",
+				"type": "uint256"
+			}
+		],
+		"name": "detailsUpdated",
+		"type": "event"
+	}
+]

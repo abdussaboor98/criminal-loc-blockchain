@@ -1,0 +1,14 @@
+#creators li{
+    text-align: left;
+    list-style-type: circle;
+
+}
+#creators {
+    margin-left: 30%;
+    margin-right: 25%;
+    width: 50%;
+}
+
+#info {
+    margin:30px;
+}
